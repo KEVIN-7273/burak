@@ -1,29 +1,31 @@
 import { Request, Response } from "express";
 import { T } from "../libs/types/common";
 
+// React loyiha uchun
+
 const memberController: T = {};
-memberController.goHome = (req: Request, res: Response) => {
-  try {
-    res.send("Home Page");
-  } catch (err) {
-    console.log("Error, goHome:", err);
-  }
-};
+// memberController.goHome = (req: Request, res: Response) => {
+//   try {
+//     res.send("Home Page");
+//   } catch (err) {
+//     console.log("Error, goHome:", err);
+//   }
+// };
 
-memberController.getLogin = (req: Request, res: Response) => {
-  try {
-    res.send("Login Page");
-  } catch (err) {
-    console.log("Error, getLogin:", err);
-  }
-};
+// memberController.getLogin = (req: Request, res: Response) => {
+//   try {
+//     res.send("Login Page");
+//   } catch (err) {
+//     console.log("Error, getLogin:", err);
+//   }
+// };
 
-memberController.getSignup = (req: Request, res: Response) => {
-  try {
-    res.send("Signup Page");
-  } catch (err) {
-    console.log("Error, Signup:", err);
-  }
-};
+// memberController.getSignup = (req: Request, res: Response) => {
+//   try {
+//     res.send("Signup Page");
+//   } catch (err) {
+//     console.log("Error, Signup:", err);
+//   }
+// };
 
 export default memberController;
