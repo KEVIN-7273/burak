@@ -35,3 +35,15 @@ array ichida qaytarsin. MASALAN: getSquareNumbers([1, 2, 3])
 // }
 
 // console.log(getSquareNumbers([1, 2, 3]));
+
+/* PROJECT STANDARTS:
+  - Logging standarts 
+  - Naming standarts 
+
+      Function, method, variable => caMel case
+      class => PasCal
+      folder => ke-bab
+      css => s_nake
+
+  - Error handling   
+*/

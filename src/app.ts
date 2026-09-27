@@ -2,6 +2,8 @@ import express from "express";
 import path from "path";
 import router from "./router";
 import routerAdmin from "./routerAdmin";
+import morgan from "morgan";
+import { MORGAN_FORMAT } from "./libs/types/config";
 
 /** 1-ENTRANCE **/
 
@@ -11,6 +13,7 @@ console.log("__dirname: ", __dirname);
 app.use(express.static(path.join(__dirname, "public"))); // papkani static folder qildik
 app.use(express.urlencoded({ extended: true })); //  middleware integratsiya
 app.use(express.json()); // restAPI sifatida request bolayotgan datalarni bodysida kelayotgan json datani otqazishga ruxsat berish
+app.use(morgan(MORGAN_FORMAT));
 
 /** 2-SESSIONS**/
 
