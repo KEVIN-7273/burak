@@ -47,3 +47,10 @@ array ichida qaytarsin. MASALAN: getSquareNumbers([1, 2, 3])
 
   - Error handling   
 */
+
+/* 
+  Traditional API
+  Rest API
+  GraphQL API
+  ...
+*/
