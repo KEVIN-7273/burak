@@ -59,7 +59,7 @@ array ichida qaytarsin. MASALAN: getSquareNumbers([1, 2, 3])
 
       Function, method, variable => caMel case
       class => PasCal
-      folder => ke-bab
+      folder, file => ke-bab
       css => s_nake
 
   - Error handling   
