@@ -1,19 +1,50 @@
-/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK O &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
-function calculateSumOfNumbers(arr: any[]): number {
-  let sum = 0;
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK P &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+/*
+P-TASK
+
+Shunday function yozing, u object qabul qilsin va arrayni object 
+arrayga otkazib arrayni qaytarsin. MASALAN: 
+objectToArray({a: 10, b: 20}) return [["a", 10], ["b", 20]].
+ */
+
+function objectToArray(obj: object) {
+  let result: any[] = [];
+  let keys = Object.keys(obj);
+  let values = Object.values(obj);
   let i = 0;
-  while (i < arr.length) {
-    if (typeof arr[i] === "number") {
-      sum = sum + arr[i];
-    }
+
+  while (i < keys.length) {
+    let key = keys[i];
+    let value = values[i];
+    let pair = [key, value];
+
+    result.push(pair);
     i++;
   }
-  return sum;
+
+  return result;
 }
 
-console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35]));
-console.log(calculateSumOfNumbers([false, "69", { son: 30 }, true, 36]));
-console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 95]));
+console.log(objectToArray({ a: 10, b: 20 }));
+console.log(objectToArray({ name: "Ali", age: 25, city: "Toshkent" }));
+console.log(objectToArray({ isAdmin: true, isActive: false }));
+
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK O &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+// function calculateSumOfNumbers(arr: any[]): number {
+//   let sum = 0;
+//   let i = 0;
+//   while (i < arr.length) {
+//     if (typeof arr[i] === "number") {
+//       sum = sum + arr[i];
+//     }
+//     i++;
+//   }
+//   return sum;
+// }
+
+// console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35]));
+// console.log(calculateSumOfNumbers([false, "69", { son: 30 }, true, 36]));
+// console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 95]));
 
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK N &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 /* Shunday function yozing, u string qabul qilsin va string palindrom yani 
