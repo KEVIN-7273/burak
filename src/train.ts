@@ -1,3 +1,15 @@
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK Q &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+
+function hasProperty(objj: object, strr: string) {
+  let keys = Object.keys(objj); //
+  return keys.includes(strr); //
+}
+
+console.log(hasProperty({ brand: "UZAVTO", year: 2020 }, "color"));
+console.log(hasProperty({ price: 350000, inStock: true }, "inStock"));
+console.log(hasProperty({ city: "Toshkent", temperature: 32 }, "country"));
+console.log(hasProperty({ name: "Bobur", score: 87 }, "score"));
+
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK P &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 /*
 P-TASK
@@ -7,27 +19,27 @@ arrayga otkazib arrayni qaytarsin. MASALAN:
 objectToArray({a: 10, b: 20}) return [["a", 10], ["b", 20]].
  */
 
-function objectToArray(obj: object) {
-  let result: any[] = [];
-  let keys = Object.keys(obj);
-  let values = Object.values(obj);
-  let i = 0;
+// function objectToArray(obj: object) {
+//   let result: any[] = [];
+//   let keys = Object.keys(obj);
+//   let values = Object.values(obj);
+//   let i = 0;
 
-  while (i < keys.length) {
-    let key = keys[i];
-    let value = values[i];
-    let pair = [key, value];
+//   while (i < keys.length) {
+//     let key = keys[i];
+//     let value = values[i];
+//     let pair = [key, value];
 
-    result.push(pair);
-    i++;
-  }
+//     result.push(pair);
+//     i++;
+//   }
 
-  return result;
-}
+//   return result;
+// }
 
-console.log(objectToArray({ a: 10, b: 20 }));
-console.log(objectToArray({ name: "Ali", age: 25, city: "Toshkent" }));
-console.log(objectToArray({ isAdmin: true, isActive: false }));
+// console.log(objectToArray({ a: 10, b: 20 }));
+// console.log(objectToArray({ name: "Ali", age: 25, city: "Toshkent" }));
+// console.log(objectToArray({ isAdmin: true, isActive: false }));
 
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK O &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 // function calculateSumOfNumbers(arr: any[]): number {
