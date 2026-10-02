@@ -102,3 +102,8 @@ array ichida qaytarsin. MASALAN: getSquareNumbers([1, 2, 3])
   GraphQL API
   ...
 */
+
+/*
+Traditional frontend development => BSSR(backend Tayyor html yuboradi)        =>EJS
+Modern Frontend development      => SPA(backend Json data orqali html yasaydi)  => React
+*/

@@ -21,7 +21,7 @@ app.use(morgan(MORGAN_FORMAT));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 /** 4-ROUTERS **/
-app.use("/admin", routerAdmin); // SSR: EJS
+app.use("/admin", routerAdmin); // BSSR: EJS
 app.use("/", router); // SPA: ReaCt // Middleware Design Pattern => faqatgina "/" manzil bilan ishlamoqda
 
 export default app; // module.exports = app
