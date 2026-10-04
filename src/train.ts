@@ -1,14 +1,32 @@
-/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK Q &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK R &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+function calculate(str: string) {
+  let numbers = str.split("+");
 
-function hasProperty(objj: object, strr: string) {
-  let keys = Object.keys(objj); //
-  return keys.includes(strr); //
+  let total = 0;
+  let i = 0;
+  while (i < numbers.length) {
+    total = total + Number(numbers[i]);
+    i++;
+  }
+  return total;
 }
 
-console.log(hasProperty({ brand: "UZAVTO", year: 2020 }, "color"));
-console.log(hasProperty({ price: 350000, inStock: true }, "inStock"));
-console.log(hasProperty({ city: "Toshkent", temperature: 32 }, "country"));
-console.log(hasProperty({ name: "Bobur", score: 87 }, "score"));
+console.log(calculate("1+2+3+4"));
+console.log(calculate("10+20+30"));
+console.log(calculate("5+3+2+1+9"));
+console.log(calculate("1+3"));
+
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK Q &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+
+// function hasProperty(objj: object, strr: string) {
+//   let keys = Object.keys(objj); //
+//   return keys.includes(strr); //
+// }
+
+// console.log(hasProperty({ brand: "UZAVTO", year: 2020 }, "color"));
+// console.log(hasProperty({ price: 350000, inStock: true }, "inStock"));
+// console.log(hasProperty({ city: "Toshkent", temperature: 32 }, "country"));
+// console.log(hasProperty({ name: "Bobur", score: 87 }, "score"));
 
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK P &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 /*
@@ -118,4 +136,12 @@ array ichida qaytarsin. MASALAN: getSquareNumbers([1, 2, 3])
 /*
 Traditional frontend development => SSR(backend Tayyor html yuboradi)        =>EJS
 Modern Frontend development      => SPA(backend Json data orqali html yasaydi)  => React
+*/
+
+/* cookie 
+har bir requestga join qiladi
+bu request serverga keganda sidni oladi va store ichidan izlaydi va session malumotini 
+requestga joylab beradi
+
+self destroy
 */
