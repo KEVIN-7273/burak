@@ -4,7 +4,7 @@ import MemberService from "../models/Member.service";
 import { LoginInput, MemberInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
 import { AdminRequest } from "../libs/types/member";
-import { Message } from "../libs/Errors";
+import Errors, { Message } from "../libs/Errors";
 const memberService = new MemberService();
 
 const restaurantController: T = {};
@@ -15,6 +15,7 @@ restaurantController.goHome = (req: Request, res: Response) => {
     // send | json | redirect | end | render
   } catch (err) {
     console.log("Error, goHome:", err);
+    res.redirect("/admin");
   }
 };
 
@@ -24,6 +25,7 @@ restaurantController.getSignup = (req: Request, res: Response) => {
     res.render("signup");
   } catch (err) {
     console.log("Error, Signup:", err);
+    res.redirect("/admin");
   }
 };
 
@@ -36,6 +38,7 @@ restaurantController.getLogin = (req: Request, res: Response) => {
     res.render("login");
   } catch (err) {
     console.log("Error, getLogin:", err);
+    res.redirect("/admin");
   }
 };
 
@@ -57,7 +60,11 @@ restaurantController.processSignup = async (
     });
   } catch (err) {
     console.log("Error, processSignup:", err);
-    res.send(err);
+    const messege =
+      err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
+    res.send(
+      `<script> alert ("${messege}") window.location.replace('admin/signup') </script>`,
+    );
   }
 };
 
@@ -77,7 +84,23 @@ restaurantController.processLogin = async (
     });
   } catch (err) {
     console.log("Error, processLogin", err);
-    res.send(err);
+    const messege =
+      err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
+    res.send(
+      `<script> alert ("${messege}") window.location.replace('admin/login') </script>`,
+    );
+  }
+};
+
+restaurantController.logout = async (req: AdminRequest, res: Response) => {
+  try {
+    console.log("logout");
+    req.session.destroy(function () {
+      res.redirect("/admin");
+    });
+  } catch (err) {
+    console.log("Error, processLogin", err);
+    res.redirect("/admin");
   }
 };
 
