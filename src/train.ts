@@ -116,6 +116,6 @@ array ichida qaytarsin. MASALAN: getSquareNumbers([1, 2, 3])
 */
 
 /*
-Traditional frontend development => BSSR(backend Tayyor html yuboradi)        =>EJS
+Traditional frontend development => SSR(backend Tayyor html yuboradi)        =>EJS
 Modern Frontend development      => SPA(backend Json data orqali html yasaydi)  => React
 */
