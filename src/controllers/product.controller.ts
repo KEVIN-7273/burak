@@ -3,8 +3,9 @@ import { Request, Response } from "express";
 import Errors from "../libs/Errors";
 import { T } from "../libs/types/common";
 import ProductService from "../models/Product.service";
+import { AdminRequest } from "../libs/types/member";
 
-const memberService = new ProductService();
+const productService = new ProductService();
 
 const productController: T = {};
 export default productController;
