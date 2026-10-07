@@ -3,6 +3,7 @@ const routerAdmin = express.Router();
 import restaurantController from "./controllers/restaurant.controller";
 import productController from "./controllers/product.controller";
 import { verify } from "jsonwebtoken";
+import makeUploader from "./libs/utils/uploader";
 
 routerAdmin.get("/", restaurantController.goHome);
 /* Restaurant */
@@ -12,7 +13,11 @@ routerAdmin
 
 routerAdmin
   .get("/signup", restaurantController.getSignup)
-  .post("/signup", restaurantController.processSignup);
+  .post(
+    "/signup",
+    makeUploader("members").single("memberImage"),
+    restaurantController.processSignup,
+  );
 
 routerAdmin.get("/logout", restaurantController.logout);
 routerAdmin.get("/check-me", restaurantController.checkAuthSession);
@@ -24,8 +29,9 @@ routerAdmin.get(
   productController.getAllProducts,
 );
 routerAdmin.post(
-  "product/create",
+  "/product/create",
   restaurantController.verifyRestaurant,
+  makeUploader("products").array("productImage"),
   productController.createNewProduct,
 );
 routerAdmin.post(
@@ -37,3 +43,4 @@ routerAdmin.post(
 /* User */
 
 export default routerAdmin;
+// git commit -m "feat: upload files to server via multe"
