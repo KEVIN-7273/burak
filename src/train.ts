@@ -1,20 +1,42 @@
-/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK R &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
-function calculate(str: string) {
-  let numbers = str.split("+");
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK S &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
-  let total = 0;
-  let i = 0;
-  while (i < numbers.length) {
-    total = total + Number(numbers[i]);
+function missingNumbers(arr: number[]): number[] {
+  let result: number[] = [];
+  arr.sort((a, b) => a - b);
+  let i: number = 0;
+  while (i < arr.length - 1) {
+    let x: number = arr[i + 1] - arr[i];
+    let j: number = 1;
+    while (j < x) {
+      result.push(arr[i] + j);
+      j++;
+    }
     i++;
   }
-  return total;
+  return result;
 }
 
-console.log(calculate("1+2+3+4"));
-console.log(calculate("10+20+30"));
-console.log(calculate("5+3+2+1+9"));
-console.log(calculate("1+3"));
+console.log(missingNumbers([3, 0, 1]));
+console.log(missingNumbers([1, 2, 4, 6, 9]));
+console.log(missingNumbers([0, 1, 3, 5]));
+
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK R &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+// function calculate(str: string) {
+//   let numbers = str.split("+");
+
+//   let total = 0;
+//   let i = 0;
+//   while (i < numbers.length) {
+//     total = total + Number(numbers[i]);
+//     i++;
+//   }
+//   return total;
+// }
+
+// console.log(calculate("1+2+3+4"));
+// console.log(calculate("10+20+30"));
+// console.log(calculate("5+3+2+1+9"));
+// console.log(calculate("1+3"));
 
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK Q &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
@@ -126,22 +148,29 @@ array ichida qaytarsin. MASALAN: getSquareNumbers([1, 2, 3])
   - Error handling   
 */
 
-/* 
+/*  Requst:
   Traditional API
   Rest API
   GraphQL API
   ...
 */
 
-/*
+/* Frontend development
 Traditional frontend development => SSR(backend Tayyor html yuboradi)        =>EJS
 Modern Frontend development      => SPA(backend Json data orqali html yasaydi)  => React
 */
 
-/* cookie 
+/* cookies
 har bir requestga join qiladi
 bu request serverga keganda sidni oladi va store ichidan izlaydi va session malumotini 
 requestga joylab beradi
 
 self destroy
+*/
+
+/* Validation
+Frontend validation
+PIPE validaation
+Backend validation
+Database validation
 */
