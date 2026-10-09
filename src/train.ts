@@ -1,24 +1,50 @@
-/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK S &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK T &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
-function missingNumbers(arr: number[]): number[] {
-  let result: number[] = [];
-  arr.sort((a, b) => a - b);
+function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
+  let added: number[] = [];
+
   let i: number = 0;
-  while (i < arr.length - 1) {
-    let x: number = arr[i + 1] - arr[i];
-    let j: number = 1;
-    while (j < x) {
-      result.push(arr[i] + j);
-      j++;
-    }
+  while (i < arr1.length) {
+    added.push(arr1[i]);
     i++;
   }
-  return result;
+
+  let j: number = 0;
+  while (j < arr2.length) {
+    added.push(arr2[j]);
+    j++;
+  }
+
+  added.sort((a, b) => a - b);
+
+  return added;
 }
 
-console.log(missingNumbers([3, 0, 1]));
-console.log(missingNumbers([1, 2, 4, 6, 9]));
-console.log(missingNumbers([0, 1, 3, 5]));
+console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));
+console.log(mergeSortedArrays([1, 5, 9], [2, 4, 8]));
+console.log(mergeSortedArrays([10, 20], [1, 15, 25]));
+
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK S &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+
+// function missingNumbers(arr: number[]): number[] {
+//   let result: number[] = [];
+//   arr.sort((a, b) => a - b);
+//   let i: number = 0;
+//   while (i < arr.length - 1) {
+//     let x: number = arr[i + 1] - arr[i];
+//     let j: number = 1;
+//     while (j < x) {
+//       result.push(arr[i] + j);
+//       j++;
+//     }
+//     i++;
+//   }
+//   return result;
+// }
+
+// console.log(missingNumbers([3, 0, 1]));
+// console.log(missingNumbers([1, 2, 4, 6, 9]));
+// console.log(missingNumbers([0, 1, 3, 5]));
 
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK R &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 // function calculate(str: string) {
