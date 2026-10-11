@@ -1,28 +1,46 @@
-/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK T &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK U &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
-function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
-  let added: number[] = [];
-
+function sumOdds(num: number): number {
+  let count: number = 0;
   let i: number = 0;
-  while (i < arr1.length) {
-    added.push(arr1[i]);
+
+  while (i < num) {
+    if (i % 2 !== 0) count++;
     i++;
   }
 
-  let j: number = 0;
-  while (j < arr2.length) {
-    added.push(arr2[j]);
-    j++;
-  }
-
-  added.sort((a, b) => a - b);
-
-  return added;
+  return count;
 }
 
-console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));
-console.log(mergeSortedArrays([1, 5, 9], [2, 4, 8]));
-console.log(mergeSortedArrays([10, 20], [1, 15, 25]));
+console.log(sumOdds(9));
+console.log(sumOdds(11));
+console.log(sumOdds(100));
+console.log(sumOdds(12783));
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK T &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+
+// function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
+//   let added: number[] = [];
+
+//   let i: number = 0;
+//   while (i < arr1.length) {
+//     added.push(arr1[i]);
+//     i++;
+//   }
+
+//   let j: number = 0;
+//   while (j < arr2.length) {
+//     added.push(arr2[j]);
+//     j++;
+//   }
+
+//   added.sort((a, b) => a - b);
+
+//   return added;
+// }
+
+// console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));
+// console.log(mergeSortedArrays([1, 5, 9], [2, 4, 8]));
+// console.log(mergeSortedArrays([10, 20], [1, 15, 25]));
 
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK S &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
