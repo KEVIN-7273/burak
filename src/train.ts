@@ -8,7 +8,6 @@ function sumOdds(num: number): number {
     if (i % 2 !== 0) count++;
     i++;
   }
-
   return count;
 }
 
