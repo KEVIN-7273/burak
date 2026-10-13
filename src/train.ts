@@ -217,3 +217,6 @@ PIPE validaation
 Backend validation
 Database validation
 */
+
+// EJS Admin login jarayoni tahlili
+// Frontend signup jarayonini develop qilamiz
