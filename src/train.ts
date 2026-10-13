@@ -1,20 +1,41 @@
-/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK U &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK V &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
-function sumOdds(num: number): number {
-  let count: number = 0;
+function countChars(str: string): object {
+  let count: { [key: string]: number } = {};
   let i: number = 0;
-
-  while (i < num) {
-    if (i % 2 !== 0) count++;
+  while (i < str.length) {
+    if (count[str[i]]) {
+      count[str[i]]++;
+    } else {
+      count[str[i]] = 1;
+    }
     i++;
   }
   return count;
 }
 
-console.log(sumOdds(9));
-console.log(sumOdds(11));
-console.log(sumOdds(100));
-console.log(sumOdds(12783));
+console.log(countChars("hello"));
+console.log(countChars("Chinaamerica"));
+console.log(countChars("Pythonjava"));
+console.log(countChars("Admin"));
+
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK U &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+
+// function sumOdds(num: number): number {
+//   let count: number = 0;
+//   let i: number = 0;
+
+//   while (i < num) {
+//     if (i % 2 !== 0) count++;
+//     i++;
+//   }
+//   return count;
+// }
+
+// console.log(sumOdds(9));
+// console.log(sumOdds(11));
+// console.log(sumOdds(100));
+// console.log(sumOdds(12783));
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK T &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
 // function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
