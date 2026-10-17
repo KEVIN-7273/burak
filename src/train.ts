@@ -1,23 +1,39 @@
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK w &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+function chunkArray(arr: number[], part: number): number[][] {
+  let result: number[][] = [];
+
+  let i: number = 0;
+  while (i < arr.length) {
+    let chunk = arr.slice(i, i + part);
+    result.push(chunk);
+    i = i + part;
+  }
+  return result;
+}
+console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3));
+console.log(chunkArray([1, 2, 3, 4, 5], 2));
+console.log(chunkArray([1, 2, 3, 4, 5, 6], 3));
+
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK V &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
-function countChars(str: string): object {
-  let count: { [key: string]: number } = {};
-  let i: number = 0;
-  while (i < str.length) {
-    if (count[str[i]]) {
-      count[str[i]]++;
-    } else {
-      count[str[i]] = 1;
-    }
-    i++;
-  }
-  return count;
-}
+// function countChars(str: string): object {
+//   let count: { [key: string]: number } = {};
+//   let i: number = 0;
+//   while (i < str.length) {
+//     if (count[str[i]]) {
+//       count[str[i]]++;
+//     } else {
+//       count[str[i]] = 1;
+//     }
+//     i++;
+//   }
+//   return count;
+// }
 
-console.log(countChars("hHello"));
-console.log(countChars("Chinaamerica"));
-console.log(countChars("Pythonjava"));
-console.log(countChars("Admin"));
+// console.log(countChars("hHello"));
+// console.log(countChars("Chinaamerica"));
+// console.log(countChars("Pythonjava"));
+// console.log(countChars("Admin"));
 
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK U &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
