@@ -28,12 +28,14 @@ routerAdmin.get(
   restaurantController.verifyRestaurant,
   productController.getAllProducts,
 );
+
 routerAdmin.post(
   "/product/create",
   restaurantController.verifyRestaurant,
   makeUploader("products").array("productImages"),
   productController.createNewProduct,
 );
+
 routerAdmin.post(
   "/product/:id",
   restaurantController.verifyRestaurant,

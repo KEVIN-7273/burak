@@ -14,7 +14,7 @@ function countChars(str: string): object {
   return count;
 }
 
-console.log(countChars("hello"));
+console.log(countChars("hHello"));
 console.log(countChars("Chinaamerica"));
 console.log(countChars("Pythonjava"));
 console.log(countChars("Admin"));
