@@ -1,5 +1,3 @@
-console.log("Products frontend javascript file");
-
 $(function () {
   $(".product-collection").on("change", () => {
     const selectedValue = $(".product-collection").val();
@@ -23,8 +21,8 @@ $(function () {
   });
 
   $(".new-product-status").on("change", async function (e) {
-    const id = e.target.id;
-    const productStatus = $(`#${id}.new-product-status`).val();
+    const id = e.target.id,
+      productStatus = $(`#${id}.new-product-status`).val();
 
     try {
       const response = await axios.post(`/admin/product/${id}`, {
