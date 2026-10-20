@@ -1,18 +1,59 @@
-/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK w &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
-function chunkArray(arr: number[], part: number): number[][] {
-  let result: number[][] = [];
-
-  let i: number = 0;
-  while (i < arr.length) {
-    let chunk = arr.slice(i, i + part);
-    result.push(chunk);
-    i = i + part;
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK X &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+function countOccurrences(obj: Record<string, any>, str: string): number {
+  let count: number = 0,
+    keys = Object.keys(obj),
+    i: number = 0;
+  while (i < keys.length) {
+    let key = keys[i];
+    if (key === str) {
+      count++;
+    }
+    if (typeof obj[key] === "object") {
+      count = count + countOccurrences(obj[key], str);
+    }
+    i++;
   }
-  return result;
+  return count;
 }
-console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3));
-console.log(chunkArray([1, 2, 3, 4, 5], 2));
-console.log(chunkArray([1, 2, 3, 4, 5, 6], 3));
+
+console.log(
+  countOccurrences(
+    { model: "Bugatti", steer: { model: "HANKOOK", size: 30 } },
+    "model",
+  ),
+);
+
+console.log(
+  countOccurrences(
+    {
+      title: "iPhone 16 mini",
+      price: 12000000,
+      specs: {
+        color: "Black",
+        storage: {
+          size: 256,
+        },
+      },
+    },
+    "color",
+  ),
+);
+
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK W &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+// function chunkArray(arr: number[], part: number): number[][] {
+//   let result: number[][] = [];
+
+//   let i: number = 0;
+//   while (i < arr.length) {
+//     let chunk = arr.slice(i, i + part);
+//     result.push(chunk);
+//     i = i + part;
+//   }
+//   return result;
+// }
+// console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3));
+// console.log(chunkArray([1, 2, 3, 4, 5], 2));
+// console.log(chunkArray([1, 2, 3, 4, 5, 6], 3));
 
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK V &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 

@@ -2,7 +2,6 @@ $(function () {
   $(".member-status").on("change", function (e) {
     const id = e.target.id,
       memberStatus = $(`#${id}.member-status`).val();
-
     axios
       .post("/admin/user/edit", {
         _id: id,
