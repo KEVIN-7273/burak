@@ -1,43 +1,63 @@
-/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK X &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
-function countOccurrences(obj: Record<string, any>, str: string): number {
-  let count: number = 0,
-    keys = Object.keys(obj),
-    i: number = 0;
-  while (i < keys.length) {
-    let key = keys[i];
-    if (key === str) {
-      count++;
-    }
-    if (typeof obj[key] === "object") {
-      count = count + countOccurrences(obj[key], str);
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK Y &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+function findIntersection(arr1: number[], arr2: number[]): number[] {
+  let result: number[] = [];
+  let i: number = 0;
+  while (i < arr1.length) {
+    let j: number = 0;
+    while (j < arr2.length) {
+      if (arr1[i] === arr2[j]) {
+        result.push(arr1[i]);
+      }
+      j++;
     }
     i++;
   }
-  return count;
+  return result;
 }
 
-console.log(
-  countOccurrences(
-    { model: "Bugatti", steer: { model: "HANKOOK", size: 30 } },
-    "model",
-  ),
-);
+console.log(findIntersection([1, 2, 3], [3, 2, 0]));
+console.log(findIntersection([1, 5, 9], [2, 5, 9]));
+console.log(findIntersection([1, 2, 3], [4, 5, 6]));
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK X &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+// function countOccurrences(obj: Record<string, any>, str: string): number {
+//   let count: number = 0,
+//     keys = Object.keys(obj),
+//     i: number = 0;
+//   while (i < keys.length) {
+//     let key = keys[i];
+//     if (key === str) {
+//       count++;
+//     }
+//     if (typeof obj[key] === "object") {
+//       count = count + countOccurrences(obj[key], str);
+//     }
+//     i++;
+//   }
+//   return count;
+// }
 
-console.log(
-  countOccurrences(
-    {
-      title: "iPhone 16 mini",
-      price: 12000000,
-      specs: {
-        color: "Black",
-        storage: {
-          size: 256,
-        },
-      },
-    },
-    "color",
-  ),
-);
+// console.log(
+//   countOccurrences(
+//     { model: "Bugatti", steer: { model: "HANKOOK", size: 30 } },
+//     "model",
+//   ),
+// );
+
+// console.log(
+//   countOccurrences(
+//     {
+//       title: "iPhone 16 mini",
+//       price: 12000000,
+//       specs: {
+//         color: "Black",
+//         storage: {
+//           size: 256,
+//         },
+//       },
+//     },
+//     "color",
+//   ),
+// );
 
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& MIT TASK W &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 // function chunkArray(arr: number[], part: number): number[][] {
