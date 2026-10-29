@@ -1,5 +1,6 @@
 import MemberModel from "../schema/Member.model";
 import {
+  ExtendedRequest,
   LoginInput,
   Member,
   MemberInput,
@@ -11,6 +12,9 @@ import * as bcrypt from "bcryptjs";
 import { shapeIntoMongooseObjectId } from "../libs/config";
 
 class MemberService {
+  static getMemberDetail(member: Member) {
+    throw new Error("Method not implemented.");
+  }
   private readonly memberModel;
 
   constructor() {
@@ -59,6 +63,18 @@ class MemberService {
     }
 
     return (await this.memberModel.findById(member._id).lean().exec())!;
+  }
+
+  public async getMemberDetail(member: Member): Promise<Member> {
+    const memberId = shapeIntoMongooseObjectId(member._id);
+    const result = await this.memberModel
+      .findOne({
+        _id: memberId,
+        memberStatus: MemberStatus.ACTIVE,
+      })
+      .exec();
+    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+    return result;
   }
 
   /** SSR */
