@@ -8,6 +8,7 @@ import { MORGAN_FORMAT } from "./libs/utils/config";
 import session from "express-session";
 import ConnectMongoDB from "connect-mongodb-session";
 import { T } from "./libs/types/common";
+import cookieParser from "cookie-parser";
 
 const MongoDBStore = ConnectMongoDB(session);
 const store = new MongoDBStore({
@@ -23,6 +24,7 @@ console.log("__dirname: ", __dirname);
 app.use(express.static(path.join(__dirname, "public"))); // papkani static folder qildik
 app.use(express.urlencoded({ extended: true })); //  middleware integratsiya
 app.use(express.json()); // restAPI sifatida request bolayotgan datalarni bodysida kelayotgan json datani otqazishga ruxsat berish
+app.use(cookieParser());
 app.use(morgan(MORGAN_FORMAT));
 
 /** 2-SESSIONS**/
