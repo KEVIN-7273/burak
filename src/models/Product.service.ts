@@ -4,7 +4,7 @@ import {
   ProductInput,
   ProductUpdateInput,
 } from "../libs/types/product";
-import { shapeIntoMongooseObjectId } from "../libs/utils/config";
+import { shapeIntoMongooseObjectId } from "../libs/config";
 import ProductModel from "../schema/Product.model";
 
 class ProductService {
