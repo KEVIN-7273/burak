@@ -15,6 +15,7 @@ router.get(
   memberController.verifyAuth,
   memberController.getMemberDetail,
 );
+
 /** Product **/
 
 /** Order **/
