@@ -22,6 +22,7 @@ const app = express();
 console.log("__dirname: ", __dirname);
 
 app.use(express.static(path.join(__dirname, "public"))); // papkani static folder qildik
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 app.use(express.urlencoded({ extended: true })); //  middleware integratsiya
 app.use(express.json()); // restAPI sifatida request bolayotgan datalarni bodysida kelayotgan json datani otqazishga ruxsat berish
 app.use(cookieParser());
