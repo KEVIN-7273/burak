@@ -54,7 +54,6 @@ memberController.signup = async (req: Request, res: Response) => {
     } else {
       res.status(Errors.standard.code).json(Errors.standard);
     }
-    // res.json({});
   }
 };
 
@@ -117,7 +116,7 @@ memberController.updateMember = async (req: ExtendedRequest, res: Response) => {
   try {
     console.log("updateMember");
     const input: MemberUpdateInput = req.body;
-    if (req.file) input.memberImage = req.file.path;
+    if (req.file) input.memberImage = req.file.path.replace(/\\/, "/");
 
     console.log("FILE:", req.file);
     console.log("IMAGE PATH:", input.memberImage);
