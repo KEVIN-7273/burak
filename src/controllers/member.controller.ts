@@ -172,13 +172,13 @@ memberController.retrieveAuth = async (
   next: NextFunction,
 ) => {
   try {
-    let member = null;
     const token = req.cookies["accessToken"];
-    if (token) req.member = await authService.checkAuth(token);
+
+    if (token) {
+      req.member = await authService.checkAuth(token);
+    }
 
     next();
-    console.log("member:", member);
-    res.status(HttpCode.OK).json({ member: member });
   } catch (err) {
     console.log("Error, retrieveAuth:", err);
     next();
