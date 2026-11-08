@@ -37,3 +37,8 @@ export interface OrderItemInput {
   productId: Types.ObjectId;
   orderId?: Types.ObjectId;
 }
+
+export interface OrderUpdateInput {
+  orderId: string;
+  orderStatus: OrderStatus;
+}
