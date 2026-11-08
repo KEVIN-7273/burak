@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
+import { OrderItem } from "../libs/types/order";
 
-const orderItemSchema = new Schema(
+const orderItemSchema = new Schema<OrderItem>(
   {
     itemQuantity: {
       type: Number,
@@ -15,14 +16,19 @@ const orderItemSchema = new Schema(
     orderId: {
       type: Schema.Types.ObjectId,
       ref: "Order",
+      required: true,
     },
 
     productId: {
       type: Schema.Types.ObjectId,
       ref: "Product",
+      required: true,
     },
   },
-  { timestamps: true, collection: "orderItems" },
+  {
+    timestamps: true,
+    collection: "orderItems",
+  },
 );
 
-export default mongoose.model("OrderItem", orderItemSchema);
+export default mongoose.model<OrderItem>("OrderItem", orderItemSchema);

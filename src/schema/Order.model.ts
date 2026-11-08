@@ -16,8 +16,9 @@ const orderSchema = new Schema<Order>(
 
     orderStatus: {
       type: String,
-      enum: OrderStatus,
+      enum: Object.values(OrderStatus),
       default: OrderStatus.PAUSE,
+      required: true,
     },
 
     memberId: {
@@ -26,7 +27,10 @@ const orderSchema = new Schema<Order>(
       ref: "Member",
     },
   },
-  { timestamps: true, collection: "orders" },
+  {
+    timestamps: true,
+    collection: "orders",
+  },
 );
 
 export default mongoose.model<Order>("Order", orderSchema);

@@ -6,10 +6,10 @@ import {
   OrderUpdateInput,
 } from "../libs/types/order";
 import OrderModel from "../schema/Order.model";
+import OrderItemModel from "../schema/OrderItem.model";
 import { shapeIntoMongooseObjectId } from "../libs/config";
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import { Types } from "mongoose";
-import OrderItemModel from "../schema/OrderItem.model";
 import MemberService from "./Member.service";
 import { OrderStatus } from "../libs/enums/order.enum";
 
@@ -28,21 +28,26 @@ class OrderService {
     member: Member,
     input: OrderItemInput[],
   ): Promise<Order> {
+    if (input.length === 0) {
+      throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
+    }
+
     const memberId = shapeIntoMongooseObjectId(member._id);
+
     const amount = input.reduce((accumulator: number, item: OrderItemInput) => {
       return accumulator + item.itemPrice * item.itemQuantity;
     }, 0);
+
     const delivery = amount < 100 ? 5 : 0;
+
     try {
-      const newOrder: Order = await this.orderModel.create({
+      const newOrder = await this.orderModel.create({
         orderTotal: amount + delivery,
         orderDelivery: delivery,
-        memberId: memberId,
+        memberId,
       });
 
-      const orderId = newOrder._id;
-      console.log("orderId:", newOrder._id);
-      await this.recordOrderItem(orderId, input);
+      await this.recordOrderItem(newOrder._id, input);
 
       return newOrder;
     } catch (err) {
@@ -55,31 +60,33 @@ class OrderService {
     orderId: Types.ObjectId,
     input: OrderItemInput[],
   ): Promise<void> {
-    const promisedList = input.map(async (item: OrderItemInput) => {
-      item.orderId = orderId;
-      item.productId = shapeIntoMongooseObjectId(item.productId);
-      await this.orderItemModel.create(item);
-      return "INSERTED";
+    const promisedList = input.map((item: OrderItemInput) => {
+      return {
+        ...item,
+        orderId,
+        productId: shapeIntoMongooseObjectId(item.productId),
+      };
     });
 
-    const orderItemsState = await Promise.all(promisedList);
-    console.log("orderItemsState:", orderItemsState);
+    await this.orderItemModel.insertMany(promisedList);
   }
 
   public async getMyOrders(
     member: Member,
     inquiry: OrderInquiry,
-  ): Promise<Order[]> {
+  ): Promise<any[]> {
     const memberId = shapeIntoMongooseObjectId(member._id);
-    const matches = {
-      memberId: memberId,
-      orderStatus: inquiry.orderStatus,
-    };
+
+    const matches: any = { memberId };
+
+    if (inquiry.orderStatus) {
+      matches.orderStatus = inquiry.orderStatus;
+    }
 
     const result = await this.orderModel
       .aggregate([
         { $match: matches },
-        { $sort: { updateAt: -1 } },
+        { $sort: { updatedAt: -1 } },
         { $skip: (inquiry.page - 1) * inquiry.limit },
         { $limit: inquiry.limit },
         {
@@ -101,7 +108,9 @@ class OrderService {
       ])
       .exec();
 
-    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+    if (result.length === 0) {
+      throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+    }
 
     return result;
   }
@@ -110,24 +119,47 @@ class OrderService {
     member: Member,
     input: OrderUpdateInput,
   ): Promise<Order> {
-    const memberId = shapeIntoMongooseObjectId(member._id),
-      orderId = shapeIntoMongooseObjectId(input.orderId),
-      orderStatus = input.orderStatus;
+    const memberId = shapeIntoMongooseObjectId(member._id);
+    const orderId = shapeIntoMongooseObjectId(input.orderId);
+    const orderStatus = input.orderStatus;
+
+    const oldOrder = await this.orderModel
+      .findOne({
+        memberId,
+        _id: orderId,
+      })
+      .exec();
+
+    if (!oldOrder) {
+      throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+    }
 
     const result = await this.orderModel
       .findOneAndUpdate(
         {
-          memberId: memberId,
+          memberId,
           _id: orderId,
         },
-        { orderStatus: orderStatus },
-        { new: true },
+        { orderStatus },
+        { new: true, runValidators: true },
       )
       .exec();
-    if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
-    if (orderStatus === OrderStatus.PROCESS) {
-      await this.memberService.addUserPoint(member, 1);
+
+    if (!result) {
+      throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
     }
+
+    if (
+      oldOrder.orderStatus !== OrderStatus.PROCESS &&
+      orderStatus === OrderStatus.PROCESS
+    ) {
+      const updatedMember = await this.memberService.addUserPoint(member, 1);
+
+      if (!updatedMember) {
+        throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+      }
+    }
+
     return result;
   }
 }
