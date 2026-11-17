@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 import path from "path";
 import router from "./router";
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, "public"))); // papkani static folde
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 app.use(express.urlencoded({ extended: true })); //  middleware integratsiya
 app.use(express.json()); // restAPI sifatida request bolayotgan datalarni bodysida kelayotgan json datani otqazishga ruxsat berish
+app.use(cors({ credentials: true, origin: true }));
 app.use(cookieParser());
 app.use(morgan(MORGAN_FORMAT));
 
